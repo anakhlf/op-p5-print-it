@@ -26,7 +26,29 @@ const bulletPoints = document.getElementById("dots");
 let currentIndex = 0;
 const totalSlides = slides.length;
 
-
+function updateSlide() { 
+	slides.forEach((slide, index) => {
+		const slideElement = document.createElement("div");
+		slideElement.className = "slide";
+		slideElement.innerHTML =`<img src="${slide.image}" class="banner-img"> 
+		<p>${slide.tagLine}</p>`;
+		container.appendChild(slideElement);
+		if (index === currentIndex) {
+			slideElement.style.display = "block";
+		  } else {
+			slideElement.style.display = "none";
+		  }
+	});
+	const dots = Array.from(document.getElementsByClassName("dot"));
+	dots.forEach ((dot, index) => {
+		if (index === currentIndex) {
+			dot.classList.add("dot_selected");
+		}
+		else {
+			dot.classList.remove("dot_selected");
+		}
+	});
+}
 
 
 for (i = 0 ; i < totalSlides; i++) {
