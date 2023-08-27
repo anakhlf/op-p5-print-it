@@ -24,9 +24,10 @@ const bulletPoints = document.getElementById("dots");
 
 let currentIndex = 0;
 const totalSlides = slides.length;
+let intervalId;
 
 
-updateSlide()
+updateSlide(currentIndex)
 
 function updateSlide() { 
 	slides.forEach((slide, index) => {
@@ -52,12 +53,15 @@ function updateSlide() {
 	});
 }
 
-
-for (i = 0 ; i < totalSlides; i++) {
+for (let i = 0 ; i < totalSlides; i++) {
 	const dots = document.createElement("span");
 	dots.className = "dot";
-	dots.setAttribute("data-index", currentIndex);
+	dots.setAttribute("data-index", i);
 	bulletPoints.appendChild(dots);
+
+	if (i === 0) {
+	dots.classList.add("dot_selected");
+}
 
 	dots.addEventListener("click", () => {
 		currentIndex = i;
@@ -76,6 +80,17 @@ flecheDroite.addEventListener("click", () => {
 	currentIndex = (currentIndex + 1) % totalSlides;
 	updateSlide();
 })
+
+function automatic() {
+	intervalId = setInterval(()=> {
+		currentIndex = (currentIndex + 1) % totalSlides;
+		updateSlide();
+	}, 5000);
+} 
+
+automatic();
+
+
 
 
 		
