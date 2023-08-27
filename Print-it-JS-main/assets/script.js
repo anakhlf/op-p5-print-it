@@ -26,6 +26,22 @@ const bulletPoints = document.getElementById("dots");
 let currentIndex = 0;
 const totalSlides = slides.length;
 
+
+
+
+for (i = 0 ; i < totalSlides; i++) {
+	const dots = document.createElement("span");
+	dots.className = "dot";
+	dots.setAttribute("data-index", currentIndex);
+	bulletPoints.appendChild(dots);
+
+	dots.addEventListener("click", () => {
+		currentIndex = i;
+		updateSlide();
+	});
+}
+
+
 flecheGauche.addEventListener("click", () => {
 	currentIndex = (currentIndex - 1) % totalSlides;
 	updateSlide();
