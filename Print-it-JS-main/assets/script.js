@@ -36,6 +36,7 @@ function updateSlide() {
 		slideElement.innerHTML =`<img src="${slide.image}" class="banner-img"> 
 		<p>${slide.tagLine}</p>`;
 		container.appendChild(slideElement);
+		console.log(index, currentIndex);
 		if (index === currentIndex) {
 			slideElement.style.display = "block";
 		  } else {
@@ -56,7 +57,6 @@ function updateSlide() {
 for (let i = 0 ; i < totalSlides; i++) {
 	const dots = document.createElement("span");
 	dots.className = "dot";
-	dots.setAttribute("data-index", i);
 	bulletPoints.appendChild(dots);
 
 	if (i === 0) {
@@ -73,6 +73,9 @@ for (let i = 0 ; i < totalSlides; i++) {
 
 flecheGauche.addEventListener("click", () => {
 	currentIndex = (currentIndex - 1) % totalSlides;
+	if (currentIndex === -1) {
+		currentIndex = totalSlides - 1;
+	}
 	updateSlide();
 })
 
